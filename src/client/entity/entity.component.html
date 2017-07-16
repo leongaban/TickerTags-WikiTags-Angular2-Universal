@@ -1,0 +1,144 @@
+<div class="container">
+    <div class="row" *ngIf="meta">
+        <div class="col-xs-12 col-md-8">
+            <h3>{{ title }} <small>{{ meta.occupation }}</small></h3>
+            <p>{{ meta.description }}</p>
+            <h4>Social Mention Volume <small>for {{ title }}</small></h4>
+
+            <div id="chart" style="width: 100%; height: 300px;">
+                <div class="chart-placeholder">Chart goes here</div>
+            </div>
+
+            <!-- Rankings -->
+            <h4 *ngIf="rankings_col_1">Today's Rankings <small>for {{ title }}</small></h4>
+            <div class="row">
+                <div class="col-md-12 col-lg-6 list-group" *ngIf="rankings_col_1">
+                    <a *ngFor="let ranking of rankings_col_1" class="list-group-item" href="/wiki/category{{ ranking.category_id }}">
+                        <span class="label label-success">#{{ ranking.rank }}</span> {{ ranking.title }}
+                        <span [ngSwitch]="ranking.movement" class="badge">
+                            <small *ngSwitchCase="''">
+                                <span class="glyphicon"></span>{{ ranking.change }}
+                            </small>
+                            <small *ngSwitchCase="'up'">
+                                <span class="glyphicon glyphicon-chevron-up"></span>{{ ranking.change }}
+                            </small>
+                            <small *ngSwitchCase="'down'">
+                                <span class="glyphicon glyphicon-chevron-down"></span>{{ ranking.change }}
+                            </small>
+                        </span>
+                    </a>
+                </div>
+                <div class="hidden-md hidden-sm hidden-xs col-lg-6 list-group" *ngIf="rankings_col_2">
+                    <a *ngFor="let ranking of rankings_col_2" class="list-group-item" href="/wiki/category{{ ranking.category_id }}">
+                        <span class="label label-success">#{{ ranking.rank }}</span> {{ ranking.title }}
+                        <span [ngSwitch]="ranking.movement" class="badge">
+                            <small *ngSwitchCase="''">
+                                <span class="glyphicon"></span>{{ ranking.change }}
+                            </small>
+                            <small *ngSwitchCase="'up'">
+                                <span class="glyphicon glyphicon-chevron-up"></span>{{ ranking.change }}
+                            </small>
+                            <small *ngSwitchCase="'down'">
+                                <span class="glyphicon glyphicon-chevron-down"></span>{{ ranking.change }}
+                            </small>
+                        </span>
+                    </a>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="tags">
+                <!-- Related Tags -->
+                <div class="col-md-4 col-sm-12 col-xs-12 pl0">
+                    <h3>Related Tags</h3>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default btn-xs active">Today</button>
+                        <button type="button" class="btn btn-default btn-xs">Week</button>
+                        <button type="button" class="btn btn-default btn-xs">Month</button>
+                        <button type="button" class="btn btn-default btn-xs">Year</button>
+                        <button type="button" class="btn btn-default btn-xs">MAX</button>
+                    </div>
+                    <div class="list-group">
+                        <a href="/wiki/entity/{{ tag.entity_id }}" class="list-group-item" *ngFor="let tag of tags">
+                            <span class="label label-success">#1</span> {{ tag.title }}
+                            <span [ngSwitch]="tag.movement" class="badge">
+                                <small *ngSwitchCase="''">
+                                    <span class="glyphicon"></span><small>{{ tag.change }}</small>
+                                </small>
+                                <small *ngSwitchCase="'up'">
+                                    <span class="glyphicon glyphicon-chevron-up"></span><small>{{ tag.change }}</small>
+                                </small>
+                                <small *ngSwitchCase="'down'">
+                                    <span class="glyphicon glyphicon-chevron-down"></span><small>{{ tag.change }}</small>
+                                </small>
+                            </span>
+                        </a>
+                    </div>
+                </div>
+
+                <!-- Tag Cloud -->
+                <div class="col-md-8 col-sm-12 col-xs-12" *ngIf="cloud">
+                    <h3>Tag Cloud <small>Most common words tweeted with entity</small></h3>
+                    <div class="btn-group" role="group">
+                        <button type="button" class="btn btn-default btn-xs active">Today</button>
+                        <button type="button" class="btn btn-default btn-xs">Week</button>
+                        <button type="button" class="btn btn-default btn-xs">Month</button>
+                        <button type="button" class="btn btn-default btn-xs">Year</button>
+                        <button type="button" class="btn btn-default btn-xs">MAX</button>
+                    </div>
+                    <div class="well text-center" style="width: 100%; min-height: 200px;" id="wordcloud">
+                        <span *ngFor="let tag of cloud" class="cloud{{ tag.weight }}">
+                            {{ tag.term }}
+                        </span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row" *ngIf="news">
+                <h3>Today's News <small>about {{ title }}</small></h3>
+                <div class="media" *ngFor="let item of news">
+                    <div class="media-left">
+                        <a href="{{ item.link }}">
+                            <img class="media-object" [src]="item.image" alt="{{ title }}">
+                        </a>
+                    </div>
+                    <div class="media-body">
+                        <h4 class="media-heading">
+                            <a href="{{ item.link }}">{{ item.title }}</a>
+                        </h4>
+                        {{ item.description }}
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Meta data -->
+        <div class="col-xs-6 col-md-4">
+            <img [src]="meta.image_credit.img" class="img-responsive" alt="{{ title }}" title="{{ title }}">
+            <h4 class="text-center">{{ title }}</h4>
+            <dl class="dl-horizontal  text-overflow">
+                <dt>Image credit:</dt>
+                    <dd><a href="{{ meta.image_credit.img }}">{{ meta.image_credit.title }}</a></dd>
+                    <dt>Description:</dt>
+                    <dd>{{ meta.occupation }}</dd>
+                <dt>Name:</dt>
+                    <dd>{{ title }}</dd>
+                <dt *ngIf="meta.also_known_as">Also Known As:</dt>
+                    <dd *ngFor="let known_as of meta.also_known_as">{{ known_as }}</dd>
+                <dt>Aliases:</dt>
+                    <dd>{{ title }}</dd>
+                <dt *ngIf="meta.birth_places">Birth Places:</dt>
+                    <dd *ngFor="let birth of meta.birth_places">
+                        <a href="/wiki/category/{{ birth.category_id }}">{{ birth.place }}</a>
+                    </dd>
+                <dt *ngIf="meta.residence">Residence:</dt>
+                    <dd *ngFor="let residences of meta.residences">
+                        <a href="/wiki/category/{{ residences.category_id }}">{{ residences.place }}</a>
+                    </dd>
+                <dt *ngIf="meta.partner">Partner:</dt>
+                    <dd><a href="/wiki/entity/{{ meta.partner.entity_id }}">{{ meta.partner.name }}</a></dd>
+                <dt *ngIf="meta.occupation">Occupation:</dt>
+                    <dd><a href="/wiki/Ryan_Gosling__1">{{ meta.occupation }}</a></dd>
+            </dl>
+        </div>
+    </div>
+</div>

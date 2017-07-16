@@ -1,0 +1,35 @@
+/* Colors module
+============================================================
+========================================================= */
+
+// Primary
+$blue: 	 #024562;
+$green:  #249B7A;
+$orange: #FC913A;
+$red: 	 #F25A43;
+$gray:	 #454545;
+
+// Grays
+$gray5: #3D3D3D;
+$gray4: #656565;
+$gray3: #868686;
+$gray2: #BFBFBF;
+$gray1: #E5E5E5;
+$gray0: #FAFAFA;
+
+// Brands
+// $facebook: #438acb;
+// $twitter:  #5cbde9;
+
+// Elements
+$body: #fff;
+// $button: $blue;
+// $buttonHover: lighten($blue, 10%);
+
+// Classes
+.green {
+    color: #249B7A;
+    &:hover { color: #249B7A; }
+}
+
+.red { color: $red !important; }

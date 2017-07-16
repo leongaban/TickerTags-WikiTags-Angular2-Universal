@@ -1,0 +1,43 @@
+<!-- Title area -->
+<div class="container category-title-header">
+	<h1>{{ title }} <small>February 21, 2017</small></h1>
+	<p class="lead">WikiTags ranks what people are talking about. Below are the today's entries for the <mark>top ranked 2017 Oscar Nominee for Best Actor.</mark></p>
+</div>
+
+<section *ngIf="entityCards">
+	<div class="row">
+		<div class="container col-lg-3 col-md-6 col-sm-12" *ngFor="let card of entityCards">
+			<div class="thumbnail">
+				<a [routerLink]="['/wiki/entity/', card.id, { title: card.title }]">
+					<div class="image-wrap">
+						<img [src]="card.graphic" class="img-responsive" alt="Ryan Gosling" title="Ryan Gosling">
+					</div>
+				</a>
+				<div class="caption">
+					<section>
+						<span class="label label-success ranking">#{{ card.rank }}</span>
+						<a [routerLink]="['/wiki/entity/', card.id, { title: card.title }]" class="f14">{{ card.title }}</a>
+						<span class="badge" [ngSwitch]="card.movement">
+							<div *ngSwitchCase="''">
+								<span class="glyphicon"></span>{{ card.change }}
+							</div>
+							<div *ngSwitchCase="'up'">
+								<span class="glyphicon glyphicon-chevron-up"></span>{{ card.change }}
+							</div>
+							<div *ngSwitchCase="'down'">
+								<span class="glyphicon glyphicon-chevron-down"></span>{{ card.change }}
+							</div>
+						</span>
+					</section>
+					<div class="tags">
+						<ul>
+							<li *ngFor="let tag of card.tags">
+								<p>{{ tag }}</p>
+							</li>
+						</ul>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</section>

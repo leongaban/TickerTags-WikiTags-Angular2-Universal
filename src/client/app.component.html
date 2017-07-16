@@ -1,0 +1,40 @@
+<div class="container">
+	<div class="row"><div class="col-md-12 h20"></div></div>
+
+	<!-- Header navigation -->
+	<div class="row">
+		<div class="col-md-2 col-sm-4">
+			<a href="/wiki">
+				<img src="../assets/wikitags-logo.png" class="img-responsive wikitags-logo" alt="WikiTags" title="WikiTags">
+			</a>
+		</div>
+
+		<div class="col-md-8 col-sm-8">
+			<h2>Should mankind colonize the Universe?</h2>
+		    <h3>Agree: {{agreed}}, Disagree: {{disagreed}}</h3>
+		    <!-- <my-voter *ngFor="let voter of voters"
+		      (onVoted)="onVoted($event)">
+		    </my-voter> -->
+			<ol class="breadcrumb">
+				<li><a href="/wiki">Home</a></li>
+				<li (onCategoryTitled)="onCategoryTitled($event)">{{ catTitle }}</li>
+				<!-- <li><a href="/wiki/category">Categories</a></li>
+				<li><a href="/wiki/entity">2017 Oscar Nominee for Best Actor</a></li> -->
+				<!-- <li class="active">2017 Oscar Nominee for Best Actor</li> -->
+			</ol>
+		</div>
+
+		<div class="col-md-2 col-sm-2">
+			<div class="input-group">
+				<input type="text" class="search-input form-control" placeholder="Search for...">
+			</div>
+		</div>
+	</div>
+
+	<router-outlet></router-outlet>
+
+	<footer class="container col-sm-12">
+		<p>©2017 <strong>WikiTags</strong>, a service of <a href="https://www.tickertags.com/" class="green"><strong>TickerTags</strong></a> | Powered by <a href="https://www.wikidata.org/" class="gray5">WikiData</a></p>
+	</footer>
+
+</div>

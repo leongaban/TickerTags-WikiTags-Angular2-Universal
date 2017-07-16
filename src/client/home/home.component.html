@@ -1,0 +1,43 @@
+<section *ngIf="featuredCategories">
+	<section *ngFor="let category of featuredCategories">
+
+		<!-- Title -->
+		<div class="row container">
+			<div class="row">
+				<div class="col-md-12">
+					<img [src]="category.graphic" width="100%" alt="[category.title]">
+				</div>
+			</div>
+		</div>
+		
+		<!-- Category Cards -->
+		<div class="row">
+			<div class="container col-lg-3 col-md-6 col-sm-12" *ngFor="let card of category.categorycards">
+				<div class="thumbnail">
+					<a *ngIf="card.type == 'image'" [routerLink]="['/wiki/category/', card.id, { title: card.title }]">
+						<div class="image-wrap">
+							<img [src]="card.graphic" class="img-responsive" alt="[card.title]" title="[card.title]">
+						</div>
+					</a>
+
+					<div *ngIf="card.type == 'video'">
+						<div class="image-wrap">
+							<iframe title="YouTube video player" class="youtube-player" type="text/html" [src]="card.url | safeResourceUrl" height="100%" width="100%" frameborder="0"></iframe>
+						</div>
+					</div>
+
+					<div class="caption">
+						<h4 class="mt0">
+							<a [routerLink]="['/wiki/category/', card.id, { title: card.title }]">{{ card.title }}</a>
+						</h4>
+						<ol *ngIf="card.listings">
+			                <li *ngFor="let listing of card.listings">
+			                	<a [routerLink]="['/wiki/entity/', listing.id, { title: listing.title }]"> {{ listing.title }}</a>
+			                </li>
+		          		</ol>
+					</div>
+				</div>
+			</div>
+		</div>
+	</section>
+</section>

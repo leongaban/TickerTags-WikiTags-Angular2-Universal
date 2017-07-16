@@ -1,0 +1,13 @@
+h3 {
+	margin: 20px 0;
+	font-size: 32px;
+}
+
+h3 small {
+	font-size: 12px;
+}
+
+.dl-horizontal dt,
+.dl-horizontal dd {
+	padding-bottom: 5px;
+}

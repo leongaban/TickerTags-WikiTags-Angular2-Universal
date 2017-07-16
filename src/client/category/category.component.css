@@ -1,0 +1,18 @@
+.category-title-header small {
+	margin-left: 10px;
+}
+
+.caption {
+	clear: both;
+    padding: 10px;
+    overflow: auto;
+}
+
+.tags p {
+	margin: 0;
+}
+
+.tags ul > li {
+	float: left;
+	margin-right: 5px;
+}

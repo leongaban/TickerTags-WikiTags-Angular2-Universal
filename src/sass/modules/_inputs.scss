@@ -1,0 +1,21 @@
+/* Inputs, Selects, Checkboxes etc...
+============================================================
+========================================================= */
+
+// removes chrome input highlight
+*:focus { outline: 0; }
+
+.label { height: 40px; }
+
+.form-control:focus { 
+	border-color: #249B7A !important;
+	outline: 0;
+	-webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(36, 155, 122, 0.6) !important;
+	box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(36, 155, 122, 0.6) !important;
+}
+
+.search-input {
+	border: 1px solid #ccc !important;
+	border-radius: 4px !important;
+	padding: 10px 15px !important;
+}
